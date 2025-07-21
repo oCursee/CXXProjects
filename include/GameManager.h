@@ -4,7 +4,7 @@
 #include <QString>
 #include <vector>
 #include <map>
-#include <QMainWindow>
+#include "mainwindow.h"
 
 enum class e_GameState{
     Ready,
@@ -23,6 +23,7 @@ enum class e_PlayRock{
 
 class GameManager{
     private:
+        const MainWindow* mainWindow;
         e_GameState GameState = e_GameState::Ready; // Ready, Ended
         QString LastUserPlay; // Try and make some simple weighted pattern recoginition.
         const std::map<std::string, e_Options> ChoiceMap{
@@ -33,7 +34,7 @@ class GameManager{
 
     
     public: 
-        GameManager(); // Constructor to hide button.
+        GameManager(MainWindow* mainWindow); 
         void ResetGameState();
         void MakeSelection();
 

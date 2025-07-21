@@ -1,7 +1,10 @@
 #include "GameManager.h"
 #include <QDebug>
+#include "mainwindow.h"
 
 
-GameManager::GameManager(){
-    
+GameManager::GameManager(MainWindow* mainWindow):mainWindow(mainWindow)
+{
+    mainWindow->toggleRestartButton(false);
 }
+

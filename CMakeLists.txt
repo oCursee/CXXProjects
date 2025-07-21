@@ -18,9 +18,9 @@ qt_add_executable(_rps
     WIN32 MACOSX_BUNDLE
     src/GameManager.cpp
     include/GameManager.h
+    include/mainwindow.h
     mainwindow.cpp
     mainwindow.ui
-    mainwindow.h
     main.cpp
     ${RESOURCES} 
     
