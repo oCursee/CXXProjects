@@ -4,6 +4,7 @@
 #include <QString>
 #include <vector>
 #include <map>
+#include <QMainWindow>
 
 enum class e_GameState{
     Ready,
