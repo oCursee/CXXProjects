@@ -10,6 +10,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     this->setWindowTitle("Rock-Paper-Scissors");
     GameManager* GameInstance = new GameManager(this);
+
+    connect(this->ui->rockButton, &QPushButton::clicked, this, [](){
+        qDebug() << "Clicked rock button";
+    });
 }
 
 MainWindow::~MainWindow()

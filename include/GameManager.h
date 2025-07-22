@@ -36,7 +36,7 @@ class GameManager{
     public: 
         GameManager(MainWindow* mainWindow); 
         void ResetGameState();
-        void MakeSelection();
+        void MakeSelection(QString selectionName);
 
 };
 
