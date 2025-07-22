@@ -9,6 +9,7 @@
 enum class e_GameState
 {
     Ready,
+    inProgress,
     Ended
 };
 enum class e_Options
@@ -17,12 +18,6 @@ enum class e_Options
     Rock,
     Paper,
     Scissors
-};
-enum class e_PlayRock
-{
-    Scissors = 0,
-    Rock = 1,
-    Paper = 2,
 };
 const std::map<QString, e_Options> ChoiceMap{
     {"Rock", e_Options::Rock},
@@ -37,12 +32,20 @@ private:
     e_GameState GameState = e_GameState::Ready; // Ready, Ended
     e_Options LastUserPlay = e_Options::None;  // Try and make some simple weighted pattern recoginition.
     e_Options PlayingChoice;
+    e_Options botChoice;
 public:
     GameManager(MainWindow *mainWindow);
     ~GameManager();
     void ResetGameState();
     void MakeSelection(QString selectionName);
     void BeginGame();
+    bool IsUserWinner();
+    e_Options GenerateChoice();
+    QString NameFromEnum(e_Options inputEnum);
+
+   
+
+
 
 };
 
