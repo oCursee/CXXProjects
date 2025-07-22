@@ -11,9 +11,16 @@ MainWindow::MainWindow(QWidget *parent)
     this->setWindowTitle("Rock-Paper-Scissors");
     GameManager* GameInstance = new GameManager(this);
 
-    connect(this->ui->rockButton, &QPushButton::clicked, this, [](){
-        qDebug() << "Clicked rock button";
+    connect(this->ui->rockButton, &QPushButton::clicked, this, [&GameInstance](){
+        GameInstance->MakeSelection("Rock");
     });
+    connect(this->ui->paperButton, &QPushButton::clicked, this, [&GameInstance](){
+        GameInstance->MakeSelection("Paper");
+    });
+    connect(this->ui->scissorsButton, &QPushButton::clicked, this, [&GameInstance](){
+        GameInstance->MakeSelection("Scissors");
+    });
+    
 }
 
 MainWindow::~MainWindow()
