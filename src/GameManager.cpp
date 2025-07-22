@@ -10,13 +10,33 @@ GameManager::GameManager(MainWindow* mainWindow):mainWindow(mainWindow)
 
 void GameManager::MakeSelection(QString selectionName)
 {   
-    QString toPrint;
-     switch(ChoiceMap.at(selectionName))
-     {
-        case e_Options::Rock: toPrint = "Rock";
-        case e_Options::Paper: toPrint = "Paper";
-        case e_Options::Scissors: toPrint =  "Scissors";
-        default: toPrint =  "Unknown";
+    
+    for (const auto& pair: ChoiceMap)
+    {
+        if (pair.first == selectionName)
+        {
+            this->PlayingChoice = pair.second;
+            break;
+        }
     }
-    qDebug() << "Selection made: "<< selectionName<< toPrint;
+    this->BeginGame();
+    
+}
+
+void GameManager::BeginGame()
+{
+    qDebug() << static_cast<int>(this->LastUserPlay);
+
+    if (this->LastUserPlay == e_Options::None){
+        qDebug() << "Firstt user play randomize choice";
+    }
+    else
+    {
+        qDebug() <<"Not first choice";
+    }
+}
+
+GameManager::~GameManager()
+{
+    delete this;
 }

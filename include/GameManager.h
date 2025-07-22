@@ -13,6 +13,7 @@ enum class e_GameState
 };
 enum class e_Options
 { // For mapping
+    None,
     Rock,
     Paper,
     Scissors
@@ -34,12 +35,15 @@ class GameManager
 private:
     const MainWindow *mainWindow;
     e_GameState GameState = e_GameState::Ready; // Ready, Ended
-    QString LastUserPlay;                       // Try and make some simple weighted pattern recoginition.
-
+    e_Options LastUserPlay = e_Options::None;  // Try and make some simple weighted pattern recoginition.
+    e_Options PlayingChoice;
 public:
     GameManager(MainWindow *mainWindow);
+    ~GameManager();
     void ResetGameState();
     void MakeSelection(QString selectionName);
+    void BeginGame();
+
 };
 
 #endif // GAMEMANAGER_H
