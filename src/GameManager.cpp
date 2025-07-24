@@ -12,7 +12,7 @@ GameManager::GameManager(MainWindow* mainWindow):mainWindow(mainWindow)
 
 void GameManager::MakeSelection(QString selectionName)
 {   
-    if (this->GameState == e_GameState::inProgress){return;} // If game is already in progress stops selections for whatever race conditions.
+    if (this->GameState != e_GameState::Ready){return;} // If game is already in progress stops selections for whatever race conditions.
     this->GameState = e_GameState::inProgress;
     for (const auto& pair: ChoiceMap)
     {
@@ -31,27 +31,29 @@ void GameManager::BeginGame()
     QString botChoicetoString = this->NameFromEnum(this->botChoice);
     bool userWon = this->IsUserWinner();
     if (userWon){
-        qDebug() << "WINNER: Bot Picked" << botChoicetoString;
+        this->mainWindow->setResponseText("WINNER: " + botChoicetoString);
     }
     else
     {
-        qDebug() << "LOSER: Bot Picked " << botChoicetoString;
+         this->mainWindow->setResponseText("LOSER: " + botChoicetoString);
     }
     this->GameState = e_GameState::Ended;
+    mainWindow->toggleRestartButton(true);
 }
-
-
 e_Options GameManager::GenerateChoice()
 {
     srand(time(0));
-    int randomNum = 1 + (rand() % 4); 
-    switch(randomNum){
-       case 1: return e_Options::Rock; 
-       case 2: return e_Options::Paper; 
-       case 3: return e_Options::Scissors; 
-    }   
+    int randomNum = 1 + (rand() % 3); 
+    return static_cast<e_Options>(randomNum);
 }
 
+void GameManager::ResetGameState()
+{
+    if (this->GameState !=e_GameState::Ended){return;}
+    this->mainWindow->resetResponseText();
+    mainWindow->toggleRestartButton(false);
+    this->GameState = e_GameState::Ready;
+}
 bool GameManager::IsUserWinner()
 {
     switch(this->PlayingChoice)

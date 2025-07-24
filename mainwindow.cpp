@@ -19,6 +19,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this->ui->scissorsButton, &QPushButton::clicked, this, [GameInstance](){
         GameInstance->MakeSelection("Scissors");
     });
+    connect(this->ui->restartButton, &QPushButton::clicked, this, [GameInstance](){
+        GameInstance->ResetGameState();
+    });
 }
 
 MainWindow::~MainWindow()
@@ -26,6 +29,14 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::resetResponseText()
+{
+    this->ui->responseLine->setText("Make your move!");
+}
+void MainWindow::setResponseText(QString headerText)
+{
+    this->ui->responseLine->setText(headerText);
+}
 void MainWindow::toggleRestartButton(bool toggleType)
 {
     this->ui->restartButton->setVisible(toggleType);

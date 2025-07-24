@@ -17,6 +17,8 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void toggleRestartButton(bool toggleType);
+    void setResponseText(QString headerText);
+    void resetResponseText();
 
     
 

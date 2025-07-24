@@ -28,7 +28,7 @@ const std::map<QString, e_Options> ChoiceMap{
 class GameManager
 {
 private:
-    const MainWindow *mainWindow;
+    MainWindow *mainWindow;
     e_GameState GameState = e_GameState::Ready; // Ready, Ended
     e_Options LastUserPlay = e_Options::None;  // Try and make some simple weighted pattern recoginition.
     e_Options PlayingChoice;
